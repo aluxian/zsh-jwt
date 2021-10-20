@@ -16,8 +16,8 @@ function jwt {
     local privateKEY="$3"
     shift 3
 
-    local headerBase64url=$(cat "$headerJSON" | base64 | tr '+/' '-_' | tr -d '=')
-    local payloadBase64url=$(cat "$payloadJSON" | base64 | tr '+/' '-_' | tr -d '=')
+    local headerBase64url=$(jq -rc '' "$headerJSON" | base64 | tr '+/' '-_' | tr -d '=')
+    local payloadBase64url=$(jq -rc '' "$payloadJSON" | base64 | tr '+/' '-_' | tr -d '=')
     
     local claim="$headerBase64url.$payloadBase64url"
 
